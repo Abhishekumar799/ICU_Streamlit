@@ -5,7 +5,7 @@ import pandas as pd
 st.set_page_config(layout="wide")
 from PIL import Image
 
-model = load_model('Data/ICU_prediction_finetune_naive_bayes23')
+model = load_model('ICUPredictionDeepAarogya/Data/ICU_prediction_finetune_naive_bayes23')
 
 cat_map = {
     "No": 0,
@@ -14,14 +14,14 @@ cat_map = {
 
 
 def predict(model, input_df):
-    model.memory = "Data/"
+    model.memory = "ICUPredictionDeepAarogya/Data/"
     predictions_df = predict_model(estimator=model, data=input_df)
     predictions = predictions_df['prediction_label'][0]
     return predictions
 
 
 def get_data():
-    data = pd.read_csv("Data/peerj-08-10337-s001.csv")
+    data = pd.read_csv("ICUPredictionDeepAarogya/Data/peerj-08-10337-s001.csv")
     data.columns = list(map(str.strip, list(data.columns)))
     data = data[['Procalcitonin', 'CRP', 'Ferritin', 'RR', 'LDH', 'SOB',
                  'SpO2', 'Fever', 'hypertensionhx', 'smoking_history', 'ALT',
@@ -31,7 +31,7 @@ def get_data():
 
 def main():
     data = get_data()
-    image2 = Image.open('Images/icu.png')
+    image2 = Image.open('ICUPredictionDeepAarogya/Images/icu.png')
     st.sidebar.info('This app is created to predict a particular patient need an ICU treatment or not. [DeepAarogya]]')
     st.sidebar.image(image2)
     st.title("ICU Prediction")
