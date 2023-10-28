@@ -6,7 +6,7 @@ import pandas as pd
 st.set_page_config(layout="wide")
 from PIL import Image
 
-model = load_model('D:/Python_Project/ICU/Abhishek_Yadav_ICU/ICUPredictionDeepAarogya/Data/ICU_prediction_finetune_xgb')
+model = load_model('ICUPredictionDeepAarogya/Data/ICU_prediction_finetune_xgb')
 
 cat_map = {
     "No": 0,
@@ -18,7 +18,7 @@ cat_map = {
 
 
 def predict(model, input_df):
-    model.memory = "Data/"
+    model.memory = "ICUPredictionDeepAarogya/Data/"
     predictions_df = predict_model(estimator=model, data=input_df)
     predictions = predictions_df['prediction_label'][0]
     confidence = predictions_df['prediction_score'][0]
@@ -26,7 +26,7 @@ def predict(model, input_df):
 
 
 def get_data():
-    data = pd.read_csv("D:/Python_Project/ICU/Abhishek_Yadav_ICU/ICUPredictionDeepAarogya/Data/peerj-08-10337-s001.csv")
+    data = pd.read_csv("ICUPredictionDeepAarogya/Data/peerj-08-10337-s001.csv")
     data.columns = list(map(str.strip, list(data.columns)))
     data = data[['Age', 'Gender..female.0..male1.', 'Fever', 'Cough', 'SOB', 'Fatigue', 'Sputum', 'Myalgia', 'Diarrhea',
              'Nausea.Vomiting', 'Sore.throat', 'Chest.discomfort..chest.pain', 'smoking_history',
@@ -37,7 +37,7 @@ def get_data():
 
 def main():
     data = get_data()
-    image2 = Image.open('D:/Python_Project/ICU/Abhishek_Yadav_ICU/ICUPredictionDeepAarogya/Images/icu.png')
+    image2 = Image.open('ICUPredictionDeepAarogya/Images/icu.png')
     st.sidebar.info('This app is created to predict a particular patient need ICU treatment or no. [DeepAarogya]] - Version 2')
     st.sidebar.image(image2)
     st.title("ICU Prediction V2")
@@ -47,7 +47,7 @@ def main():
     check_data = st.sidebar.checkbox('Check Feature Importance')
     if check_data:
         st.header("Feature Importance:")
-        db = Image.open('D:/Python_Project/ICU/Abhishek_Yadav_ICU/ICUPredictionDeepAarogya/Images/ft_importance.png')
+        db = Image.open('ICUPredictionDeepAarogya/Images/ft_importance.png')
         st.image(db)
 
     test_model = st.sidebar.checkbox('Test Model V2 Online', True)
