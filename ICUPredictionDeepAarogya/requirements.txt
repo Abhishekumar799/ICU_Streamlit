@@ -1,0 +1,6 @@
+pandas
+numpy
+streamlit
+pycaret==3.0.2
+Pillow
+xgboost
