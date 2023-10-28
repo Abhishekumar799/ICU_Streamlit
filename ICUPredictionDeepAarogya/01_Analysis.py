@@ -41,7 +41,7 @@ def main():
     check_data = st.sidebar.checkbox('Check Decision Boundary')
     if check_data:
         st.header("Decision Boundary:")
-        db = Image.open('Images/sep.png')
+        db = Image.open('ICUPredictionDeepAarogya/Images/sep.png')
         st.image(db)
 
     test_model = st.sidebar.checkbox('Test Model Online', True)
